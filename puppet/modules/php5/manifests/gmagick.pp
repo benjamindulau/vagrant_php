@@ -1,6 +1,7 @@
 class php5::gmagick {
     package { ["libgraphicsmagick1-dev"]:
         ensure => latest,
+        require => Exec["aptGetUpdate"],
 		notify => Exec["gmagickInstall"],
     }
 

@@ -6,5 +6,6 @@ class mysql::mysql {
 
     package { ["mysql-client", "mysql-server"]:
         ensure => latest,
+        require => Exec["aptGetUpdate"],
     }
 }

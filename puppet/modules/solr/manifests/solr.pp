@@ -25,7 +25,7 @@ class solr::solr {
 #		ensure => file,
 #        owner => "root",
 #        group => "root",
-#        content => template('solr/solr_config.xml'),
+#        content => template("solr/solr_config.xml"),
 #        require => [Exec["solrInstall"], File["/etc/solr"]],
 #        notify => Service["tomcat6"],
 #    }
@@ -35,8 +35,8 @@ class solr::solr {
         ensure => file,
         owner => "root",
         group => "root",
-        content => template('solr/solr_catalina.xml'),
-        require => File["solr_config"],
+        content => template("solr/solr_catalina.xml"),
+        require => [Exec["solrInstall"], File["/etc/solr"]],
         notify => Service["tomcat6"],
     }
 }

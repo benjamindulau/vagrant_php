@@ -1,5 +1,5 @@
-class misc::misc {
-    package { ["vim", "curl", "nfs-common"]:
+class git::git {
+    package { "git":
         ensure => latest,
         require => Exec["aptGetUpdate"],
     }

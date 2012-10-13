@@ -1,9 +1,4 @@
 class rabbitmq::rabbitmq {
-    exec { "aptGetUpdate":
-        command => "apt-get update",
-        path => ["/bin", "/usr/bin"]
-    }
-
 	file { "rabbitmq.list":
         path => "/etc/apt/sources.list.d/rabbitmq.list",
         ensure => file,
@@ -22,6 +17,7 @@ class rabbitmq::rabbitmq {
 
 	package { "rabbitmq-server":
         ensure => latest,
+        require => Exec["aptGetUpdate"],
     }
 
 	service { "rabbitmq-server":

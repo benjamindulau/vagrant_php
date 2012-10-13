@@ -1,5 +1,5 @@
 # mandatory !!
-include bootstrap::bootstrap
+include bootstrap
 
 # Tools
 include misc::misc
@@ -20,19 +20,24 @@ include mysql::mysql
 include php5::mysql
 
 # Memcached
-include memcached:memcached
+include memcached::memcached
 include php5::memcached
 
 # Apache tomcat server
-include tomcat
+include tomcat::tomcat
 
 # Solr
 include solr::solr
 #include solrcores
 
 # RabbitMq
-include rabbitmq:rabbitmq
+include rabbitmq::rabbitmq
 
-
+# Git
+include git::git
+git::config {'config':
+    name => "Benjamin Dulau",
+    email => "benjamin.dulau@anonymation.com",
+}
 
 

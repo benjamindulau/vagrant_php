@@ -1,9 +1,4 @@
 class php5::php54dotdeb {
-    exec { "aptGetUpdate":
-        command => "apt-get update",
-        path => ["/bin", "/usr/bin"]
-    }
-
     file { "dotdeb.list":
         path => "/etc/apt/sources.list.d/dotdeb.list",
         ensure => file,

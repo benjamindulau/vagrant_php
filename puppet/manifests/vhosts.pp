@@ -1,6 +1,6 @@
 class vhosts {
-    apache::vhost {'my_site':
-        type => 'symfony',
-        docroot => '/vagrant/www/my_site/web'
+    apache::vhost {"my_site":
+        type => "symfony",
+        docroot => "/vagrant/www/my_site/web"
     }
 }

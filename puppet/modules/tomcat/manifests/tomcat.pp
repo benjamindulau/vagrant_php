@@ -1,6 +1,7 @@
 class tomcat::tomcat {
     package { "openjdk-6-jdk":
         ensure => latest,
+        require => Exec["aptGetUpdate"],
     }
 
     package { ["tomcat6"]:
