@@ -1,5 +1,7 @@
 !.gitignore
 
+puppet/manifests/main.pp
+
 # IDE
 .DS_Store
 nbproject/*
