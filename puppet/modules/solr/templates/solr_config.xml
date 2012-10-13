@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<solr persistent="false">
+    <cores adminPath="/admin/cores">
+        <!-- <core
+            name="strobbr_strobb"
+            instanceDir="/vagrant/web/strobbr/app/config/solr/strobb"
+            dataDir="/vagrant/web/strobbr/app/config/solr/strobb"
+        /> -->
+
+        <!-- <core
+            name="strobbr_user"
+            instanceDir="/vagrant/web/strobbr/app/config/solr/user"
+            dataDir="/vagrant/web/strobbr/app/config/solr/user"
+        /> -->
+    </cores>
+</solr>

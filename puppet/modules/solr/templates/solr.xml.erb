@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<solr persistent="false">
+    <cores adminPath="/admin/cores">
+        <% cores.each_pair do |key, value_hash| %>
+        <core
+            name="<%= key %>"
+            instanceDir="<%= value_hash['instance_dir'] %>"
+            dataDir="<%= value_hash['data_dir'] %>"
+        />
+        <% end %>
+    </cores>
+</solr>

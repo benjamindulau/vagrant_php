@@ -1,0 +1,10 @@
+<VirtualHost <%= vhost_name %>:<%= port %>>
+    ServerName <%= srvname %>
+    DocumentRoot <%= docroot %>
+    <Directory <%= docroot %>>
+        Options <%= options %>
+        AllowOverride all
+        Order allow,deny
+        allow from all
+    </Directory>
+</VirtualHost>

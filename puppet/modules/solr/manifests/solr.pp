@@ -1,0 +1,42 @@
+class solr::solr {
+    exec { "solrDownload":
+        cwd => "/tmp",
+        command => "wget http://apache.mirrors.multidist.eu/lucene/solr/3.6.1/apache-solr-3.6.1.tgz && tar -xzf apache-solr-3.6.1.tgz",
+		creates => "/tmp/apache-solr-3.6.1",
+        path => ["/bin", "/usr/bin"],
+		require => Package["tomcat6"],
+        notify => Exec["solrInstall"],
+    }
+
+	exec { "solrInstall":
+		cwd => "/tmp",
+		command => "cp apache-solr-3.6.1/dist/apache-solr-3.6.1.war /var/lib/tomcat6/webapps/solr.war",
+		creates => "/var/lib/tomcat6/webapps/solr.war",
+        path => ["/bin", "/usr/bin"],
+		require => Exec["solrDownload"],
+	}
+
+	file { "/etc/solr":
+		ensure => "directory",
+	}
+
+#	file { "solr_config":
+#        path => "/etc/solr/solr.xml",
+#		ensure => file,
+#        owner => "root",
+#        group => "root",
+#        content => template('solr/solr_config.xml'),
+#        require => [Exec["solrInstall"], File["/etc/solr"]],
+#        notify => Service["tomcat6"],
+#    }
+
+	file { "solr_catalina":
+        path => "/etc/tomcat6/Catalina/localhost/solr.xml",
+        ensure => file,
+        owner => "root",
+        group => "root",
+        content => template('solr/solr_catalina.xml'),
+        require => File["solr_config"],
+        notify => Service["tomcat6"],
+    }
+}
