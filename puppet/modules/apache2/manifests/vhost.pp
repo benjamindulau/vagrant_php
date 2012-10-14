@@ -31,6 +31,7 @@ define apache2::vhost (
 
     exec { "a2ensite":
         command => "a2ensite ${title}",
+        path => ["/bin", "/usr/bin", "/usr/sbin"],
         require => Package["apache2-mpm-prefork"],
         notify => Service["apache2"],
     }
