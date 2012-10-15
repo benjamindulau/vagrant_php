@@ -1,24 +1,24 @@
 class solr::solr {
     exec { "solrDownload":
-        cwd => "/tmp",
+        cwd => "/var/tmp",
         command => "wget http://apache.mirrors.multidist.eu/lucene/solr/3.6.1/apache-solr-3.6.1.tgz",
-		creates => "/tmp/apache-solr-3.6.1.tgz",
+		creates => "/var/tmp/apache-solr-3.6.1.tgz",
         path => ["/bin", "/usr/bin"],
 		require => Package["tomcat6"],
         notify => Exec["solrExtract"],
     }
 
     exec { "solrExtract":
-        cwd => "/tmp",
+        cwd => "/var/tmp",
         command => "tar -xzf apache-solr-3.6.1.tgz",
-        creates => "/tmp/apache-solr-3.6.1",
+        creates => "/var/tmp/apache-solr-3.6.1",
         path => ["/bin", "/usr/bin"],
         require => Exec["solrDownload"],
         notify => Exec["solrInstall"],
     }
 
 	exec { "solrInstall":
-		cwd => "/tmp",
+		cwd => "/var/tmp",
 		command => "cp apache-solr-3.6.1/dist/apache-solr-3.6.1.war /var/lib/tomcat6/webapps/solr.war",
 		creates => "/var/lib/tomcat6/webapps/solr.war",
         path => ["/bin", "/usr/bin"],
