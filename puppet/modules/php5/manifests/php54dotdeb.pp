@@ -17,8 +17,7 @@ class php5::php54dotdeb {
 
     package { ["php5-apc", "php5-xhprof"]:
         ensure => latest,
-        require => Package["libapache2-mod-php5"],
-        notify => Service["apache2"],
+        require => Package["php5-cli"],
     }
 
     package { ["phpapi-20090626", "php-apc"]:

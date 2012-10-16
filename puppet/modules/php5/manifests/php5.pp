@@ -6,13 +6,12 @@ class php5::php5 {
 
     package { ["php5-xdebug", "php5-intl", "php5-sqlite", "php5-curl"]:
         ensure => latest,
-        require => Package["libapache2-mod-php5"],
-        notify => Service["apache2"]
+        require => Package["php5-cli"],
     }
 
     package { "php5-suhosin":
         ensure => purged,
-        notify => Service["apache2"]
+        require => Package["php5-cli"],
     }
 
     file { "php-timezone.ini":
