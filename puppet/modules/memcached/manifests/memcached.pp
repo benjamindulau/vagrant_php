@@ -1,7 +1,7 @@
 class memcached::memcached {
     package { "memcached":
         ensure => latest,
-        require => Package["libmemcached-dev"],
+        require => Exec["aptGetUpdate"],
     }
 
 	service { "memcached":
