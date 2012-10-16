@@ -7,6 +7,5 @@ class php5::mysql {
     package { ["php5-mysql"]:
         ensure => latest,
         require => Package["php5-cli", "mysql-client"],
-        notify => Service["apache2"],
     }
 }
