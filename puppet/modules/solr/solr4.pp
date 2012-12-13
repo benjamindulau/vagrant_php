@@ -1,8 +1,8 @@
-class solr::solr($version = '4.0.0') {
+class solr::solr {
     exec { "solrDownload":
         cwd => "/var/tmp",
-        command => "wget http://apache.mirrors.multidist.eu/lucene/solr/${version}/apache-solr-${version}.tgz",
-		creates => "/var/tmp/apache-solr-${version}.tgz",
+        command => "wget http://apache.mirrors.multidist.eu/lucene/solr/3.6.1/apache-solr-3.6.1.tgz",
+		creates => "/var/tmp/apache-solr-3.6.1.tgz",
         path => ["/bin", "/usr/bin"],
 		require => Package["tomcat6"],
         notify => Exec["solrExtract"],
@@ -10,8 +10,8 @@ class solr::solr($version = '4.0.0') {
 
     exec { "solrExtract":
         cwd => "/var/tmp",
-        command => "tar -xzf apache-solr-${version}.tgz",
-        creates => "/var/tmp/apache-solr-${version}",
+        command => "tar -xzf apache-solr-3.6.1.tgz",
+        creates => "/var/tmp/apache-solr-3.6.1",
         path => ["/bin", "/usr/bin"],
         require => Exec["solrDownload"],
         notify => Exec["solrInstall"],
@@ -19,7 +19,7 @@ class solr::solr($version = '4.0.0') {
 
 	exec { "solrInstall":
 		cwd => "/var/tmp",
-		command => "cp apache-solr-${version}/dist/apache-solr-${version}.war /var/lib/tomcat6/webapps/solr.war",
+		command => "cp apache-solr-3.6.1/dist/apache-solr-3.6.1.war /var/lib/tomcat6/webapps/solr.war",
 		creates => "/var/lib/tomcat6/webapps/solr.war",
         path => ["/bin", "/usr/bin"],
 		require => Exec["solrExtract"],

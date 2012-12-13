@@ -1,51 +1,49 @@
-# mandatory !!
-include bootstrap
-
-# Tools
-include misc::misc
+# mandatory
+class { 'bootstrap': }
+class { 'misc::misc': }
 
 # PHP5
-include php5::php5
-include php5::php54dotdeb
-include php5::phptool
-include php5::gmagick
-include php5::composer
+class { 'php5::php5': }
+# 5.3
+# class { 'php5::php53debian': }
+# 5.4
+class { 'php5::php54dotdeb': }
+class { 'php5::phptool': }
+class { 'php5::gmagick': }
+class { 'php5::composer': }
 
 # Apache2
-include apache2::apache2
+class { 'apache2::apache2': }
 #apache2::vhost {"mywebsite":
 #    type => "symfony",
 #    docroot => "/vagrant/web"
 #}
 
 # MySQL
-include mysql::mysql
-include php5::mysql
+class { 'mysql::mysql': }
+class { 'php5::mysql': }
 
 # Memcached
-include memcached::memcached
-include php5::memcached
+class { 'memcached::memcached': }
+class { 'php5::memcached': }
 
-# Apache tomcat server
-include tomcat::tomcat
+# Tomcat
+class { 'tomcat::tomcat': }
 
-# Solr
-include solr::solr
-# define cores
+# Apache Solr (version 3.x or 4.x)
+class { 'solr::solr': version => '4.0.0' }
 #solr::cores {"cores":
 #    cores => {
 #        core_foo => {instance_dir => "/var/solr/core_foo", data_dir => "/var/solr/core_foo"},
 #    }
 #}
 
-# RabbitMq
-include rabbitmq::rabbitmq
+# RabbitMQ
+class { 'rabbitmq::rabbitmq': }
 
 # Git
-include git::git
+class { 'git::git': }
 git::config {'config':
     name => "Benjamin Dulau",
     email => "benjamin.dulau@anonymation.com",
 }
-
-
